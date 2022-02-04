@@ -1509,12 +1509,12 @@ PyObject* pysqlite_connection_execute(pysqlite_Connection* self, PyObject* args)
     PyObject* cursor = 0;
     PyObject* result = 0;
 
-    cursor = pysqlite_connection_cursor(self, NULL);
+    cursor = pysqlite_connection_cursor(self, NULL, NULL);
     if (!cursor) {
         goto error;
     }
 
-    result = pysqlite_cursor_execute(cursor, args);
+    result = pysqlite_cursor_execute((pysqlite_Cursor *)cursor, args);
     if (!result) {
         Py_CLEAR(cursor);
     }
@@ -1530,12 +1530,12 @@ PyObject* pysqlite_connection_executemany(pysqlite_Connection* self, PyObject* a
     PyObject* cursor = 0;
     PyObject* result = 0;
 
-    cursor = pysqlite_connection_cursor(self, NULL);
+    cursor = pysqlite_connection_cursor(self, NULL, NULL);
     if (!cursor) {
         goto error;
     }
 
-    result = pysqlite_cursor_executemany(cursor, args);
+    result = pysqlite_cursor_executemany((pysqlite_Cursor *)cursor, args);
     if (!result) {
         Py_CLEAR(cursor);
     }
@@ -1551,12 +1551,12 @@ PyObject* pysqlite_connection_executescript(pysqlite_Connection* self, PyObject*
     PyObject* cursor = 0;
     PyObject* result = 0;
 
-    cursor = pysqlite_connection_cursor(self, NULL);
+    cursor = pysqlite_connection_cursor(self, NULL, NULL);
     if (!cursor) {
         goto error;
     }
 
-    result = pysqlite_cursor_executescript(cursor, args);
+    result = pysqlite_cursor_executescript((pysqlite_Cursor *)cursor, args);
     if (!result) {
         Py_CLEAR(cursor);
     }
